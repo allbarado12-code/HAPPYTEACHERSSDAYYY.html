@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Happy Teacher's Day - Jeffff The Land Sharky</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+
+      background:
+        radial-gradient(circle at top left, #7c4dff, transparent 40%),
+        radial-gradient(circle at bottom right, #00c6ff, transparent 40%),
+        linear-gradient(135deg, #141e30, #243b55);
+
+      position: relative;
+      color: white;
+    }
+
+    /* Background glow */
+    body::before {
+      content: "";
+      position: absolute;
+
+      width: 350px;
+      height: 350px;
+
+      background: rgba(255, 255, 255, 0.08);
+
+      border-radius: 50%;
+
+      top: -150px;
+      left: -100px;
+    }
+
+    body::after {
+      content: "";
+      position: absolute;
+
+      width: 400px;
+      height: 400px;
+
+      background: rgba(0, 229, 255, 0.08);
+
+      border-radius: 50%;
+
+      bottom: -200px;
+      right: -120px;
+    }
+
+    /* Main Card */
+    .card {
+      width: 92%;
+      max-width: 720px;
+
+      padding: 50px 35px;
+
+      text-align: center;
+
+      background: rgba(255, 255, 255, 0.12);
+
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
+      border: 1px solid rgba(255, 255, 255, 0.2);
+
+      border-radius: 35px;
+
+      box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.4),
+        inset 0 0 30px rgba(255, 255, 255, 0.03);
+
+      z-index: 5;
+
+      animation: cardAppear 1s ease;
+    }
+
+    /* Teacher emoji */
+    .teacher {
+      font-size: 70px;
+
+      animation: floating 3s ease-in-out infinite;
+    }
+
+    /* Main title */
+    h1 {
+      margin-top: 15px;
+
+      font-size: clamp(38px, 8vw, 72px);
+
+      font-weight: 900;
+
+      background:
+        linear-gradient(
+          90deg,
+          #ffffff,
+          #ffe082,
+          #00e5ff,
+          #ffffff
+        );
+
+      background-size: 300%;
+
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      animation: gradientMove 5s linear infinite;
+    }
+
+    /* Teacher name */
+    .teacher-name {
+      margin-top: 18px;
+
+      font-size: clamp(20px, 4vw, 32px);
+
+      font-weight: 800;
+
+      color: #ffe082;
+
+      text-shadow:
+        0 0 10px rgba(255, 224, 130, 0.5),
+        0 0 25px rgba(255, 224, 130, 0.2);
+
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    /* Subtitle */
+    .subtitle {
+      margin-top: 8px;
+
+      font-size: 19px;
+
+      color: #dffcff;
+    }
+
+    /* Intro message */
+    .intro {
+      max-width: 570px;
+
+      margin: 22px auto;
+
+      line-height: 1.8;
+
+      font-size: 17px;
+
+      color: #f5f5f5;
+    }
+
+    /* Button */
+    button {
+      margin-top: 15px;
+
+      padding: 16px 34px;
+
+      border: none;
+
+      border-radius: 50px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffd54f,
+          #ff9800
+        );
+
+      color: #3b2500;
+
+      font-size: 17px;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 8px 25px rgba(255, 152, 0, 0.4);
+
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform:
+        translateY(-5px)
+        scale(1.05);
+
+      box-shadow:
+        0 15px 35px rgba(255, 193, 7, 0.55);
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    /* Hidden surprise */
+    #message {
+      max-height: 0;
+
+      overflow: hidden;
+
+      opacity: 0;
+
+      transition:
+        max-height 0.8s ease,
+        opacity 0.8s ease,
+        margin 0.8s ease;
+    }
+
+    #message.show {
+      max-height: 500px;
+
+      opacity: 1;
+
+      margin-top: 25px;
+    }
+
+    /* Message box */
+    .message-box {
+      padding: 25px;
+
+      border-radius: 22px;
+
+      background:
+        rgba(255, 255, 255, 0.09);
+
+      border:
+        1px solid rgba(255, 255, 255, 0.15);
+
+      line-height: 1.8;
+
+      animation: messagePop 0.6s ease;
+    }
+
+    .message-box strong {
+      color: #ffe082;
+    }
+
+    /* Signature */
+    .signature {
+      margin-top: 20px;
+
+      color: #80deea;
+
+      font-weight: bold;
+
+      font-style: italic;
+    }
+
+    /* Made by SPKAI */
+    .made-by {
+      margin-top: 30px;
+
+      font-size: 13px;
+
+      color: rgba(255, 255, 255, 0.6);
+
+      letter-spacing: 2px;
+    }
+
+    .made-by span {
+      color: #ffe082;
+
+      font-weight: 800;
+    }
+
+    /* Floating decorations */
+    .floating {
+      position: absolute;
+
+      bottom: -60px;
+
+      font-size: 30px;
+
+      opacity: 0.5;
+
+      animation:
+        rise 9s linear infinite;
+
+      z-index: 1;
+    }
+
+    .f1 {
+      left: 8%;
+      animation-delay: 0s;
+    }
+
+    .f2 {
+      left: 23%;
+      animation-delay: 3s;
+    }
+
+    .f3 {
+      left: 72%;
+      animation-delay: 1s;
+    }
+
+    .f4 {
+      left: 88%;
+      animation-delay: 5s;
+    }
+
+    .f5 {
+      left: 50%;
+      animation-delay: 7s;
+    }
+
+    /* Card animation */
+    @keyframes cardAppear {
+      from {
+        opacity: 0;
+
+        transform:
+          translateY(50px)
+          scale(0.9);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
+
+    /* Floating teacher */
+    @keyframes floating {
+      0%, 100% {
+        transform:
+          translateY(0)
+          rotate(-2deg);
+      }
+
+      50% {
+        transform:
+          translateY(-12px)
+          rotate(2deg);
+      }
+    }
+
+    /* Moving title gradient */
+    @keyframes gradientMove {
+      0% {
+        background-position: 0%;
+      }
+
+      100% {
+        background-position: 300%;
+      }
+    }
+
+    /* Teacher name glow */
+    @keyframes glow {
+      from {
+        text-shadow:
+          0 0 5px
+          rgba(255, 224, 130, 0.4);
+      }
+
+      to {
+        text-shadow:
+          0 0 15px
+          rgba(255, 224, 130, 0.8),
+
+          0 0 30px
+          rgba(255, 224, 130, 0.3);
+      }
+    }
+
+    /* Surprise animation */
+    @keyframes messagePop {
+      from {
+        opacity: 0;
+
+        transform:
+          translateY(15px)
+          scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
+
+    /* Floating decorations */
+    @keyframes rise {
+      0% {
+        transform:
+          translateY(0)
+          rotate(0deg);
+
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 0.6;
+      }
+
+      100% {
+        transform:
+          translateY(-110vh)
+          rotate(360deg);
+
+        opacity: 0;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+
+      .card {
+        padding: 40px 20px;
+      }
+
+      .teacher {
+        font-size: 55px;
+      }
+
+      .intro {
+        font-size: 15px;
+      }
+
+      .subtitle {
+        font-size: 16px;
+      }
+
+      button {
+        width: 90%;
+      }
+
+      .message-box {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <!-- Floating decorations -->
+
+  <div class="floating f1">🦈</div>
+
+  <div class="floating f2">⭐</div>
+
+  <div class="floating f3">💙</div>
+
+  <div class="floating f4">🦈</div>
+
+  <div class="floating f5">✨</div>
+
+
+  <!-- MAIN CARD -->
+
+  <div class="card">
+
+    <!-- Teacher icon -->
+
+    <div class="teacher">
+      👨‍🏫🦈
+    </div>
+
+
+    <!-- Main title -->
+
+    <h1>
+      Happy Teacher's Day!
+    </h1>
+
+
+    <!-- Teacher name -->
+
+    <div class="teacher-name">
+
+      JEFFFF THEEEEEEE LANDDDD<br>
+
+      SHARKKYYYYYYYYYYYYYYY 🦈
+
+    </div>
+
+
+    <!-- Subtitle -->
+
+    <div class="subtitle">
+
+      🌊 The Legendary Land Shark Teacher 🌊
+
+    </div>
+
+
+    <!-- Main message -->
+
+    <p class="intro">
+
+      Mabuhay kapa ng matagal! 🥹❤️
+
+      <br>
+
+      Salamat ng marami sa Omegaaa Twitchyyyyyyy
+
+      <br>
+
+      huhuhuhuhuuhhuh 😭😭😭
+
+    </p>
+
+
+    <!-- Surprise button -->
+
+    <button
+      onclick="showMessage()"
+      id="surpriseButton">
+
+      💌 CLICK FOR A SURPRISE
+
+    </button>
+
+
+    <!-- Hidden surprise message -->
+
+    <div id="message">
+
+      <div class="message-box">
+
+        🌟
+
+        <strong>
+          Dear JEFFFF THEEEEEEE LANDDDD
+          SHARKKYYYYYYYYYYYYYYY,
+        </strong>
+
+        🌟
+
+        <br><br>
+
+
+        Mabuhay kapa ng matagal! 🥹❤️
+
+        <br>
+
+        Salamat ng marami sa Omegaaa Twitchyyyyyyy
+
+        <br>
+
+        huhuhuhuhuuhhuh 😭😭😭
+
+
+        <br><br>
+
+
+        HAHAHAHAHAHAHAHAHA 😭😭😭
+
+
+        <br><br>
+
+
+        SANA MASAYA KANA HAAA!!!!!!! 🥹🦈💙
+
+
+        <br><br>
+
+
+        Stay legendary, Land Shark! 🦈🌊✨
+
+
+        <br><br>
+
+
+        Salamat sa lahat, Teacher Jeff!
+
+        ❤️📚
+
+
+        <div class="signature">
+
+          Happy Teacher's Day,
+          Teacher Jeff! 🦈🌊🎉
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Credit -->
+
+    <div class="made-by">
+
+      MADE WITH ❤️ BY
+
+      <span>
+        SPKAI
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- JavaScript -->
+
+  <script>
+
+    function showMessage() {
+
+      const message =
+        document.getElementById("message");
+
+      const button =
+        document.getElementById("surpriseButton");
+
+
+      message.classList.toggle("show");
+
+
+      if (message.classList.contains("show")) {
+
+        button.innerHTML =
+          "🦈💙 THANK YOU, TEACHER!";
+
+      }
+
+      else {
+
+        button.innerHTML =
+          "💌 CLICK FOR A SURPRISE";
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
